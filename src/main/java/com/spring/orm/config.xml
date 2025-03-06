@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           https://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           https://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/tx
+                           https://www.springframework.org/schema/tx/spring-tx.xsd
+                           http://www.springframework.org/schema/aop 
+           				   https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<tx:annotation-driven />
+	<aop:config proxy-target-class="true" />
+
+
+	<bean
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		name="ds">
+
+		<property name="driverClassName">
+			<value>com.mysql.cj.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://localhost:3306/users_db</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>Root@001</value>
+		</property>
+
+	</bean>
+
+	<bean
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+		name="localsession">
+		<property name="dataSource" ref="ds" />
+		<property name="hibernateProperties">
+			<props>
+				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop> -->
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			</props>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>com.spring.orm.entities.Users</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.orm.hibernate5.HibernateTemplate"
+		name="hibertemp">
+		<constructor-arg ref="localsession" />
+	</bean>
+
+	<bean class="com.spring.orm.dao.UserDaoImpl" name="userDao">
+		<property name="hibernate" ref="hibertemp" />
+	</bean>
+
+	<bean
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager"
+		name="tranx">
+		<property name="sessionFactory" ref="localsession" />
+	</bean>
+
+</beans>
+
+
+
+
