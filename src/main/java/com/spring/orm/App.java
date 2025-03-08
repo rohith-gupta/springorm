@@ -13,7 +13,7 @@ public class App {
 		
 		ApplicationContext context  = new ClassPathXmlApplicationContext("com/spring/orm/config.xml");
 		
-		UserDaoImpl userdao = (UserDaoImpl)context.getBean("userDao");
+		UserDaoImpl userdao = (UserDaoImpl)context.getBean("userDaoImpl");
 		
 		Users user = new Users();
 		
@@ -21,8 +21,19 @@ public class App {
 		user.setName("rohith");
 		
 		
+		Users u1 = new Users();
+		u1.setUserId(102);
+		u1.setName("Gupta");
+		
+		System.out.println(user);
 		int id = userdao.insert(user);
 		
+		int id2 = userdao.insert(u1);
+		
 		System.out.println(id);
+		
+		System.out.println(id2);
+		
+		
 	}
 }
