@@ -9,6 +9,7 @@ public interface UserDao {
 	public int insert(Users user);
 	public Users fetch(int userId);
 	public List<Users> fetchAll();
+	public void delete(Users user);
 	
 
 }

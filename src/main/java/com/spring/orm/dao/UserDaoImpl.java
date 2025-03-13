@@ -43,5 +43,13 @@ public class UserDaoImpl implements UserDao{
 	}
 	
 	
+	@Transactional
+	public void delete(Users user) {
+		
+		this.hibernate.delete(user);
+		
+	}
+	
+	
 
 }

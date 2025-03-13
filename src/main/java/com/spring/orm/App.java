@@ -40,6 +40,21 @@ public class App {
 			
 		}
 		
+		// to delete the row from the table first need to fetch the data and then need to delete the data
+		//delete command, insert, update commands are to use write access to database. hence we need to provide transactional annotation.
+		Users ud = userdao.fetch(102);
+		userdao.delete(ud);
+		System.out.println("deleted the entity");
+		System.out.println("The new Updated table is:");
+		
+List<Users> users1 = userdao.fetchAll();
+		
+		for(Users u : users1) {
+				
+			System.out.println(u.getUserId()+" : "+u.getName());
+			
+		}
+		
 		
 	}
 }
