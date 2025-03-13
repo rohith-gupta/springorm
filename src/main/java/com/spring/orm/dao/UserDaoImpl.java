@@ -30,10 +30,10 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public List<Users> fetch(Users user) {
+	public Users fetch(int userId) {
 		// TODO Auto-generated method stub
-		List<Users> users = new ArrayList<Users>();
-		return users;
+		Users u = this.hibernate.get(Users.class, userId);
+		return u; 
 	}
 	
 	

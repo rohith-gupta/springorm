@@ -7,7 +7,7 @@ import com.spring.orm.entities.Users;
 public interface UserDao {
 	
 	public int insert(Users user);
-	public List<Users> fetch(Users user);
+	public Users fetch(int userId);
 	
 
 }

@@ -15,24 +15,20 @@ public class App {
 		
 		UserDaoImpl userdao = (UserDaoImpl)context.getBean("userDaoImpl");
 		
-		Users user = new Users();
+		/*
+		 * Users user1 = new Users();
+		 * 
+		 * user1.setUserId(101); user1.setName("rohith");
+		 * 
+		 * int result = userdao.insert(user1);
+		 * 
+		 * System.out.println(result);
+		 */
 		
-		user.setUserId(101);
-		user.setName("rohith");
 		
-		
-		Users u1 = new Users();
-		u1.setUserId(102);
-		u1.setName("Gupta");
+		Users user = userdao.fetch(101);
 		
 		System.out.println(user);
-		int id = userdao.insert(user);
-		
-		int id2 = userdao.insert(u1);
-		
-		System.out.println(id);
-		
-		System.out.println(id2);
 		
 		
 	}
