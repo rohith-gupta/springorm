@@ -1,5 +1,7 @@
 package com.spring.orm;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -29,6 +31,14 @@ public class App {
 		Users user = userdao.fetch(101);
 		
 		System.out.println(user);
+		
+		List<Users> users = userdao.fetchAll();
+		
+		for(Users u : users) {
+			
+			System.out.println(u.getUserId()+" : "+u.getName());
+			
+		}
 		
 		
 	}

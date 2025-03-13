@@ -36,6 +36,12 @@ public class UserDaoImpl implements UserDao{
 		return u; 
 	}
 	
+	public List<Users> fetchAll()
+	{
+		List<Users> users = this.hibernate.loadAll(Users.class);
+		return users;
+	}
+	
 	
 
 }
